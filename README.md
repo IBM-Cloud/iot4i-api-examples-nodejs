@@ -24,7 +24,7 @@ To use this sample, you need:
 
 ## IoT for Insurance Architecture
 To better understand this example and the IoT for Insurance API this section contains a brief overview of its architecture.
-![**IoT for Insurance Architecture**](https://raw.github.ibm.com/Iot4i/iot4i-api-examples/master/iot4i_architecture.png?token=AAAcxvYR4oNnB-74qcoqw_VGSA4ZXCvzks5X5TFJwA%3D%3D)
+![**IoT for Insurance Architecture**](https://github.com/IBM-Bluemix/iot4i-api-examples-nodejs/raw/master/iot4i_architecture.png)
 
 | Component | Description |
 | ---- | ----------- |
