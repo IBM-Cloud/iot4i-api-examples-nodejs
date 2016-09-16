@@ -1,0 +1,24 @@
+{
+  "name": "iot4i-api-examples",
+  "version": "0.1.0",
+  "description": "IoT4I API Examples",
+  "repository": {
+    "type": "git",
+    "url": "git://github.ibm.com/Iot4i/iot4i-api-examples.git"
+  },
+  "bugs": {
+    "url": "https://github.ibm.com/Iot4i/iot4i-api-examples/issues"
+  },
+  "keywords": [
+    "insurance",
+    "api",
+    "examples",
+    "iot"
+  ],
+  "dependencies": {
+    "request": "^2.72.0"
+  },
+  "devDependencies": {},
+  "private": true,
+  "license": "IBM"
+}
