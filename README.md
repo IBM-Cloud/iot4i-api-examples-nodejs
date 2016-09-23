@@ -82,7 +82,7 @@ The examples are meant to be run locally from an interactive command console whi
 11. Attach the shield code to your newly created shield. The command will use the source code from the `resources/shieldCode.js` file
 
   ```
-  node createShield.js
+  node createShieldCode.js
   ```
 
 12. Associated the newly created shield with the user. 
