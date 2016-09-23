@@ -45,7 +45,7 @@ var createShieldCode = function(shieldCode) {
       console.warn("\tCreate shield code failed. Reason is: " + response.statusCode);
     }
     else {
-      console.log("Succesfully created shield code " + shieldCode.id);
+      console.log("Succesfully created shield code " + shieldCode.shieldUUID);
     }
 
     if (body) {
@@ -58,8 +58,8 @@ var code = fs.readFileSync("./resource/shieldCode.js");
 
 // Create a sample shield code.
 var shieldCode = {
-  "name": "demoshield",
-  "shieldUUID": "26",	// the shield must exist, see createShield.js
+  "name": "demoshield2",
+  "shieldUUID": "27",	// the shield must exist, see createShield.js
   "type": "shield",
   "code": code.toString()
 };
