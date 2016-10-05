@@ -47,7 +47,7 @@ The examples are meant to be run locally from an interactive command console whi
 
 3. Clone the app to your local environment from your terminal using the following command:
   ```
-  git clone https://github.com/IBM-Bluemix/ioti-samples.git
+  git clone https://github.com/IBM-Bluemix/iot4i-api-examples-nodejs.git
   ```
 
 4. `cd` into this newly created directory
