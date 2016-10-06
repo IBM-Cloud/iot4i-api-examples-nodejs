@@ -48,7 +48,7 @@ var createUser = function(user) {
     }
 
     if (body) {
-      console.dir(body);
+      //console.dir(body);
     }
   });
 };
