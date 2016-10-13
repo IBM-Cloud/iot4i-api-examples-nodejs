@@ -91,7 +91,7 @@ The examples are meant to be run locally from an interactive command console whi
   node createUserShieldAssociation.js
   ```
 
-13. Generate a hazard event for your user. This simulates a message sent by  the sensors install in the user's home. The message is routed through the IoT Platform service and is processed by the Shield created and registered for the user.
+13. Generate a hazard event for your user. This simulates a message sent by  the sensors installed in the user's home. The message is routed through the IoT Platform service and is processed by the Shield created and registered for the user.
   ```
   node simulateHazard.js
   ```
