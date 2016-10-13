@@ -45,56 +45,60 @@ The examples are meant to be run locally from an interactive command console whi
 
 2. If you have not already, [download node.js](https://nodejs.org/download/) and install it on your local machine.
 
-3. Clone the app to your local environment from your terminal using the following command:
+3. If you have not already, [download Git](https://git-scm.com/downloads/) and install it on your local machine.
+
+4. Clone the app to your local environment from your terminal using the following command:
   ```
   git clone https://github.com/IBM-Bluemix/iot4i-api-examples-nodejs.git
   ```
 
-4. `cd` into this newly created directory
+5. `cd` into this newly created directory
 
-5. Install the required npm and bower packages using the following command
+6. Install the required npm and bower packages using the following command
 
   ```
   npm install
   ```
 
-6. Create an IoT for Insurance service on Bluemix
+7. Create an IoT for Insurance service on Bluemix
 
-7. Use the `Deploy` button from the service console to deploy all the required application parts and depending services. This may take a few minutes. If you don't see the `Deploy` button, make sure your organization has at least **2GB of memory available**.
+8. Use the `Deploy` button from the service console to deploy all the required application parts and depending services. This may take a few minutes. If you don't see the `Deploy` button, make sure your organization has at least **2GB of memory available**.
 
-8. Update the credentials in `config.js` with the data available in the IoT4I `Service Credentials` page on Bluemix. The URI of the API looks like https://iot4insurance-api-&lt;uuid&gt;.mybluemix.net/ If running in a different region than US the URL will contain the region's name too.
+9. Update the credentials in `config.js` with the data available in the IoT4I `Service Credentials` page on Bluemix. The URI of the API looks like https://iot4insurance-api-&lt;uuid&gt;.mybluemix.net/ If running in a different region than US the URL will contain the region's name too.
 
   NOTE: when copying the URI of the API in config.js make sure it does not contain a trailing /
   
   NOTE: the aggregator URL listed in config.js is optional.  The URL is not available in the Service Credentials and can be obtained from the Bluemix page of the aggregator application created by IoT4 for Insurance.
 
-9. Create a user. If successfull the application will print the details of the newly created record.
+10. Create a user. If successfull the application will print the details of the newly created record.
   ```
   node createUser.js
   ```
   
-10. Create a shieled.If succesfull the application will print the details of the newly created record.
+11. Create a shieled.If succesfull the application will print the details of the newly created record.
 
   ```
   node createShield.js
   ```
 
-11. Attach the shield code to your newly created shield. The command will use the source code from the `resources/shieldCode.js` file
+12. Attach the shield code to your newly created shield. The command will use the source code from the `resources/shieldCode.js` file
 
   ```
   node createShieldCode.js
   ```
 
-12. Associated the newly created shield with the user. 
+13. Associated the newly created shield with the user. 
 
   ```
   node createUserShieldAssociation.js
   ```
 
-13. Generate a hazard event for your user. This simulates a message sent by  the sensors installed in the user's home. The message is routed through the IoT Platform service and is processed by the Shield created and registered for the user.
+14. Generate a hazard event for your user. This simulates a message sent by  the sensors installed in the user's home. The message is routed through the IoT Platform service and is processed by the Shield created and registered for the user.
   ```
   node simulateHazard.js
   ```
+
+15. Open the Insurance Dashboard and search for the newly created user. 
 
 ## Code Structure
 
