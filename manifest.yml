@@ -5,7 +5,7 @@ applications:
   host: api-examples
   name: api-examples
   command: node app.js
-  path: JavaCloudantDB.war
+  path: .
   domain: mybluemix.net
   instances: 1
   memory: 256M
@@ -14,3 +14,4 @@ declared-services:
   iot-for-insurance-beta:
     label: iot4Insurance
     plan: iot4i-beta
+   
