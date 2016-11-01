@@ -15,8 +15,8 @@
  */
 
 var request = require("request");
-var config = require("./config.js");
-var csrfRequests = require("./csrfRequests.js");
+var config = require("../config.js");
+var csrfRequests = require("../csrfRequests.js");
 
 /**
  * Creates a device in the IoT4I system.

@@ -1,0 +1,6 @@
+node_modules
+*.bat
+*.sh
+.gitignore
+.jshintrc
+config.js

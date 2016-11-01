@@ -37,7 +37,9 @@ To better understand this example and the IoT for Insurance API this section con
 
 ## Run on Bluemix
 
-The examples are meant to be run locally from an interactive command console while communicating with the IoT for Insurance service in Bluemix.
+Use tbe button below to Deploy the examples on Bluemix via IBM Bluemix DevOps services.
+
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/iot4i-api-examples-nodejs)
 
 ## Run locally
 
