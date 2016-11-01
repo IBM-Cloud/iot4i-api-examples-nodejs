@@ -1,0 +1,4 @@
+declared-services:
+  iot-for-insurance-beta:
+    label: iot4Insurance
+    plan: iot4i-beta
