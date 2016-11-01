@@ -1,10 +1,7 @@
+---
 applications:
-  - disk_quota: 1024M
+- name: iot4i-api-examples
   memory: 256M
-  name: iot4i-api-examples
   command: node app.js
-  path: .
-  domain: mybluemix.net
-  instances: 1
   services:
   - iot4Insurance
