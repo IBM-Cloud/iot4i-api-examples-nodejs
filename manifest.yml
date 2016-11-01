@@ -1,16 +1,10 @@
-declared-services:
-  iot-for-insurance-beta:
-    label: iot4Insurance
-    plan: iot4i-beta
-
 applications:
-- services:
-  - iot4Insurance
-  disk_quota: 1024M
+  - disk_quota: 1024M
+  memory: 256M
   name: iot4i-api-examples
-  random-route: true
   command: node app.js
   path: .
   domain: mybluemix.net
   instances: 1
-  memory: 256M
+  services:
+  - iot4Insurance
