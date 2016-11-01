@@ -39,7 +39,7 @@ To better understand this example and the IoT for Insurance API this section con
 
 Use tbe button below to Deploy the examples on Bluemix via IBM Bluemix DevOps services.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/iot4i-api-examples-nodejs)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/iot4i-api-examples-nodejs/tree/webui)
 
 ## Run locally
 
