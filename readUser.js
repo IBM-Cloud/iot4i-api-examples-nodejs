@@ -23,11 +23,11 @@ var config = require( "./config.js");
  */
 var readUser = function() {
   console.info("Using the /user REST endpoint to read the specified user");
-  
+
   var userid = "user1";
 
   request({
-    url: config.api + "/user/" + userid,
+    url: config.api + "/user/name/" + userid,
     method: "GET",
     auth: config.credentials
   },
