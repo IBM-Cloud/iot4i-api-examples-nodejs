@@ -15,9 +15,8 @@
  */
 
 var request = require("request");
-var config = require( "./config.js");
 
-var requestHandler = function(url, callback, param) {
+var requestHandler = function(url, operation, config, payload, cb) {
   var cookies = csrfRequests.cookieJar.getCookies(url);
 
   for(var i = 0; i < cookies.length; ++i) {
@@ -26,13 +25,14 @@ var requestHandler = function(url, callback, param) {
     }
   }
 
-  callback(param);
+  operation(config, payload, cb);
 }
 
 var csrfRequests = module.exports = {
-  cookieJar: "",
+    cookieJar: "",
 	csrfToken: "",
-	requestAggregatorWithCSRF: function(callback) {
+	
+	requestAggregatorWithCSRF: function(operation, config, callback) {
 		csrfRequests.cookieJar = request.jar();
 
 		request({
@@ -42,10 +42,11 @@ var csrfRequests = module.exports = {
 			auth: config.credentials
 		},
 		function(error, response, body) {
-			requestHandler(config.aggregator, callback, body);
+			requestHandler(config.aggregator, operation, config, null, callback);
 		});
 	},
-	requestAPIWithCSRF: function(callback, param) {
+	
+	requestAPIWithCSRF: function( operation, config, payload, cb) {
 		csrfRequests.cookieJar = request.jar();
 
 		request({
@@ -55,7 +56,7 @@ var csrfRequests = module.exports = {
 			auth: config.credentials
 		},
 		function(error, response, body) {
-			requestHandler(config.api, callback, param);
+			requestHandler(config.api, operation, config, payload, cb);
 		});
 	}
 };

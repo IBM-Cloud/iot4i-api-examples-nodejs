@@ -1,0 +1,7 @@
+---
+applications:
+- name: iot4i-api-examples
+  memory: 256M
+  command: node app.js
+  services:
+  - iot4Insurance

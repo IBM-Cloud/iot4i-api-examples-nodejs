@@ -27,7 +27,7 @@ var readUser = function() {
   var userid = "user1";
 
   request({
-    url: config.api + "/user/" + userid,
+    url: config.api + "/user/name/" + userid,
     method: "GET",
     auth: config.credentials
   },

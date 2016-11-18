@@ -14,54 +14,15 @@
  * limitations under the License.
  */
 
-var request = require("request");
-var fs = require("fs");
-var config = require( "./config.js");
-var csrfRequests = require("./csrfRequests.js");
+var shieldCode = require( './bl/shieldCode.js');
+var config = require( './config.js');
 
-/**
- * Adds the Java Script code for an existing shield in the IoT4I system.
- * The connection information is taken from config.js
- */
-var createShieldCode = function(shieldCode) {
-  console.info("Using the /shieldcode REST endpoint to create a new shield code...");
-
-  request({
-    url: config.api + "/jscode",
-    method: "POST",
-    json: true,
-    jar: csrfRequests.cookieJar,
-    headers: {
-      "X-CSRF-Token": csrfRequests.csrfToken,
-    },
-    body: shieldCode,
-    auth: config.credentials
-  },
-  function (error, response, body) {
-    if (error) {
-      console.error("\tCreate shield code failed. Reason is: " + error);
-    }
-    else if (response.statusCode != 200) {
-      console.warn("\tCreate shield code failed. Reason is: " + response.statusCode);
-    }
-    else {
-      console.log("Succesfully created shield code " + shieldCode.shieldUUID);
-    }
-
-    if (body) {
-      console.dir(body);
-    }
-  });
-};
-
-var code = fs.readFileSync("./resource/shieldCode.js");
-
-// Create a sample shield code.
-var shieldCode = {
-  "name": "demoshield2",
-  "shieldUUID": "27",	// the shield must exist, see createShield.js
-  "type": "shield",
-  "code": code.toString()
-};
-
-csrfRequests.requestAPIWithCSRF(createShieldCode, shieldCode);
+// 2: the id of the shield from createShield.js
+shieldCode.createShieldCode(  config, 2, function( data, err) {
+	if ( err) {
+		console.log( err);
+	} else {
+		console.log( "Succesfully uploaded shield code: " + data);
+	}
+	
+})
