@@ -41,7 +41,7 @@ To better understand this example and the IoT for Insurance API this section con
 2. Rename the service to iot4Insurance
 3. Use the button below to Deploy the examples on Bluemix via IBM Bluemix DevOps services 
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/iot4i-api-examples-nodejs&branch=webui)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/iot4i-api-examples-nodejs)
 
 ## Run locally
 
