@@ -1,5 +1,5 @@
 /**
- * Copyright 2016 IBM Corp. All Rights Reserved.
+ * Copyright 2016, 2017 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -61,13 +61,12 @@ createShield = function( config, shieldid, cb) {
 	// Create a sample shield.
 	var shield = {
 	  "UUID": shieldid.toString(),	// must be unique
-	  "name": "shield"+shieldid,
-	  "type": "Environmental Measurements",
-	  "description": "Demo detection if there is a water leak",
-	  "image": "shieldWater",
+	  "name": "Contact Shield",
+	  "type": "Home",
+	  "description": "Open window/door detection using EnOcean devices",
+	  "image": "contact",
 	  "canBeDisabled": false,
 	  "hazardDetectionOnCloud": true,
-	  "jsCodeMethod": "shield"+shieldid,	// must exist as a function in the jscode for the shield code
 	  "actions": [
 	    "pushios"
 	  ],

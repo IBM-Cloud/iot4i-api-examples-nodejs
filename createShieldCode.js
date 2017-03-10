@@ -1,5 +1,5 @@
 /**
- * Copyright 2016 IBM Corp. All Rights Reserved.
+ * Copyright 2016, 2017 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ var shieldCode = require( './bl/shieldCode.js');
 var config = require( './config.js');
 
 // 2: the id of the shield from createShield.js
-shieldCode.createShieldCode(  config, 2, function( data, err) {
+shieldCode.createShieldCode(  config, 10, function( data, err) {
 	if ( err) {
 		console.log( err);
 	} else {

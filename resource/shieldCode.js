@@ -1,18 +1,24 @@
-var <shieldname>Safelet = function(payload) {
-	return (payload.liquid_detected);
-};
+(function() {
+  var shieldUuid = 10;
+  var shieldName = 'contact-shield';
+  var hazardTitle = 'The service door has been opened.';
 
-var <shieldname>EntryCondition = function(payload) {
-	return (payload.liquid_detected);
-};
+  var delay = 5000;
+  var preProcessing = undefined;
 
-var <shieldname>Message = function(payload) {
-	return (constructMessage(payload, "<shieldname>", 'DemoHazard', 'A demo shield activated!'));
-};
+  function safelet(payload) {
+    /* Value can be either closed or opened as string. */
+    return (payload.d.states.contact.value === 'open');
+  }
 
-var <shieldname> = function(payload){
-	var shield = getShieldByName("<shieldname>");
-	return (commonShield(payload, shield));
-};
+  function entryCondition(payload) {
+    return (payload.d && payload.d.states && (payload.d.states.contact !== undefined));
+  }
 
-registerShield(<shieldid>, "<shieldname>", <shieldname>EntryCondition, undefined, <shieldname>Safelet, <shieldname>Message, 5000);
+  function message(payload) {
+    var hazardUuid = shieldName + '_' + Date.now();
+    return (constructMessage(payload, shieldUuid, hazardUuid, hazardTitle));
+  }
+
+  registerShield(shieldUuid, shieldName, entryCondition, preProcessing, safelet, message, delay);
+})();

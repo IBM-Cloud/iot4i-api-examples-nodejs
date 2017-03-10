@@ -1,5 +1,5 @@
 /**
- * Copyright 2016 IBM Corp. All Rights Reserved.
+ * Copyright 2016, 2017 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ var config = require( './config.js');
 
 // user1: the id of the shield from createUser.js
 // 2: the id of the shield from createShield.js
-shieldAssociation.createUserShieldAssociation(  config, "user1", 2, function( data, err) {
+shieldAssociation.createUserShieldAssociation(  config, "user1", 10, function( data, err) {
 	if ( err) {
 		console.log( err);
 	} else {

@@ -1,5 +1,5 @@
 /**
- * Copyright 2016 IBM Corp. All Rights Reserved.
+ * Copyright 2016, 2017 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -61,10 +61,6 @@ var createShieldCode = function( config, shieldid, cb) {
 	var shieldname = "shield"+shieldid.toString();
 	
 	var jscode = code.toString();
-	jscode = jscode.replace( /<shieldid>/g, shieldid);
-	jscode = jscode.replace( /<shieldname>/g, shieldname);
-	
-	//console.log( jscode);
 	
 	// Create a sample shield code.
 	var shieldCode = {
