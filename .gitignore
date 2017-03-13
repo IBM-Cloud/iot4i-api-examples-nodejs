@@ -2,3 +2,4 @@
 /node_modules/
 /iot4i-api-examples.yml
 /push.iot4i-test.bat
+/npm-debug.log
