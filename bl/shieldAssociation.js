@@ -58,10 +58,10 @@ var requestCreateUserShieldAssociation = function( config, association, cb) {
   });
 };
 
-var createUserShieldAssociation = function( config, username, shieldid, cb) {
+var createUserShieldAssociation = function( config, username, shieldUUID, cb) {
 	
 	var association = {
-	  "shieldUUID": shieldid.toString(), // 1 is a predefined water leak shield in the database. You can also use the ID from createShield.js
+	  "shieldUUID": shieldUUID.toString(), // the UUID of a shield. Mus exist and MUST be a number but in string format, ex: "9"
 	  "username": username, // user id must exist ( see createUser.js)
 	  "hazardDetectionOnCloud": true
 	};

@@ -55,17 +55,17 @@ var requestCreateShieldCode = function( config, shieldCode, cb) {
   });
 };
 
-var createShieldCode = function( config, shieldid, cb) {
+var createShieldCode = function( config, shieldUUID, cb) {
 	var code = fs.readFileSync("./resource/shieldCode.js");
 	
-	var shieldname = "shield"+shieldid.toString();
+	var shieldname = "shield"+shieldUUID.toString();
 	
 	var jscode = code.toString();
+	jscode = jscode.replace( /<shieldUUID>/g, shieldUUID);
 	
 	// Create a sample shield code.
 	var shieldCode = {
-	  "name": shieldname,
-	  "shieldUUID": shieldid.toString(),	// the shield must exist, see createShield.js
+	  "shieldUUID": shieldUUID,	// the shield must exist, see createShield.js and MUST be a number in numeric format, ex: 9
 	  "type": "shield",
 	  "code": jscode
 	};

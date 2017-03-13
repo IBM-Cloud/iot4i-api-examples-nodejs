@@ -1,5 +1,5 @@
 (function() {
-  var shieldUuid = 10;
+  var shieldUuid = <shieldUUID>;
   var shieldName = 'contact-shield';
   var hazardTitle = 'The service door has been opened.';
 

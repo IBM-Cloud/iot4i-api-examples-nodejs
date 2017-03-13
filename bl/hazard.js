@@ -58,12 +58,16 @@ var simulateHazard = function( config, username, cb) {
 	var parameters = {
 	  "payload": {
 	      "usr": username,	// user id must exist ( see createUser.js)
-	      "liquid_detected": true,
-	      "policy_id": "123",
-	      "temperature":"12",
+	      "d" : {
+	    	  "states" : {
+	    		  "contact" : {
+	    			  "value" : "open" 
+	    		  } 
+	    	  }
+	      },
 	      "extra": {
-	        "locationDesc": "kitchen",
-	        "deviceDesc": "Amazing device"
+	        "locationDesc": "Bedroom",
+	        "deviceDesc": "Door sensor"
 	      },
 	    },
 	    "outputtype": "evt",

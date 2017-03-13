@@ -56,11 +56,11 @@ var requestCreateShield = function( config, shield, cb) {
 
 
 
-createShield = function( config, shieldid, cb) {
+createShield = function( config, shieldUUID, cb) {
 	
 	// Create a sample shield.
 	var shield = {
-	  "UUID": shieldid.toString(),	// must be unique
+	  "UUID": shieldUUID.toString(),	// MUST be unique, and MUST be number but in string format ex: "9" 
 	  "name": "Contact Shield",
 	  "type": "Home",
 	  "description": "Open window/door detection using EnOcean devices",
@@ -68,7 +68,8 @@ createShield = function( config, shieldid, cb) {
 	  "canBeDisabled": false,
 	  "hazardDetectionOnCloud": true,
 	  "actions": [
-	    "pushios"
+	    "pushios",
+	    "email"
 	  ],
 	  "potentialClaimAmount": "10",
 	  "shieldParameters": []
