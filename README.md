@@ -184,7 +184,7 @@ The primary purpose of this demo is to document the usage of the [IoT for Insura
 |[**createDevice.js**](createDevice.js)|Shows how to create a device.|
 |[**createHistoricalData.js**](createHistoricalData.js)|Shows how to use the historian service API to generate historical data.|
 |[**createPromotion.js**](createPromotion.js)|Shows how to use create promotions visible to end users in the mobile application.|
-|[**createShield.js**](createShield.js)|Shows how to add a shiled in the system.|
+|[**createShield.js**](createShield.js)|Shows how to add a shield in the system.|
 |[**createShieldCode.js**](createShield.js)|Shows how to associate JavaScript code to a shield.|
 |[**createUser.js**](createUser.js)|Shows how to register a new user in the system.|
 |[**createUserShieldAssociation.js**](createUserShieldAssociation.js)|Shows how to associate a shield to a user.|
