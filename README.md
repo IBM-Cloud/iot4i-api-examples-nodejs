@@ -94,10 +94,10 @@ By following the steps below you can exercise all the critical paths in the syst
   Ex: node createShield.js 10
   ```
 
-3. Attach the shield code to your newly created shield. The command will use the source code from the `resources/shieldCode.js` file
+3. Attach the shield code to your newly created shield. The command will use the source code from the `resources/shieldCode.js` file. **Important** If you modify the shield code you must also modify `bl/hazard.js` such that the simulated sensor event will have the payload expected by your shield.
 
   ```
-  node createShieldCode.js <shieldUUID> [<shieldcode>]
+  node createShieldCode.js <shieldUUID>
   Ex: node createShieldCode.js 10
   ```
 
