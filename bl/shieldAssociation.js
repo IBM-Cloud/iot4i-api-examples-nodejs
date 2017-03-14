@@ -1,5 +1,5 @@
 /**
- * Copyright 2016 IBM Corp. All Rights Reserved.
+ * Copyright 2016, 2017 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ var requestCreateUserShieldAssociation = function( config, association, cb) {
 var createUserShieldAssociation = function( config, username, shieldUUID, cb) {
 	
 	var association = {
-	  "shieldUUID": shieldUUID.toString(), // the UUID of a shield. Mus exist and MUST be a number but in string format, ex: "9"
+	  "shieldUUID": shieldUUID.toString(), // the UUID of a shield. Must exist and MUST be a number but in string format, ex: "9"
 	  "username": username, // user id must exist ( see createUser.js)
 	  "hazardDetectionOnCloud": true
 	};

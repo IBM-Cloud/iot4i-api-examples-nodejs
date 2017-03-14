@@ -17,11 +17,17 @@
 var shield = require( './bl/shield.js');
 var config = require( './config.js');
 
-shield.createShield(  config, 10, function( data, err) {
-	if ( err) {
-		console.log( err);
-	} else {
-		console.log( "Succesfully created shield: " + data);
-	}
+if( process.argv[2] == undefined || isNaN( process.argv[2])) {
+	console.log( "Shield UUID missing or not a number. Syntax: node createShield <shieldUUID>");
+} else {
+	var shieldUUID = parseInt( process.argv[2], 10 );
 	
-})
+	shield.createShield( config, shieldUUID, function( data, err) {
+		if ( err) {
+			console.log( err);
+		} else {
+			console.log( "Succesfully created shield: " + data);
+		}
+		
+	});
+}

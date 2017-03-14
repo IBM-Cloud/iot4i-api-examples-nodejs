@@ -1,5 +1,5 @@
 /**
- * Copyright 2016 IBM Corp. All Rights Reserved.
+ * Copyright 2016, 2017 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -50,10 +50,10 @@ var requestCreateUser = function( config, user, cb) {
 };
 
 
-var createUser = function( config, id, cb) {
+var createUser = function( config, userid, cb) {
 	
 	// Create a sample user. If a user with the same username exists in the database the function will fail.
-	var user = { "username": "user"+id,
+	var user = { "username": userid,
 	  "fullname": "John Doe",
 	  "firstname": "John",
 	  "lastname": "Doe",
@@ -61,7 +61,7 @@ var createUser = function( config, id, cb) {
 	  "accessLevel": 100, // set to 10 for users that have dashboard access
 	  "address": "42 Wallaby Way, Sydney",
 	  "email": "user@example.com",
-	  "deviceId": "user"+id,
+	  "deviceId": userid,
 	  "deviceType": "wink",
 	  "type": "wink"
 	};

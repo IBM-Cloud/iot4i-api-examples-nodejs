@@ -19,11 +19,17 @@ var config = require( './config.js');
 
 // user1: the id of the shield from createUser.js
 // 2: the id of the shield from createShield.js
-shieldAssociation.createUserShieldAssociation(  config, "user1", 10, function( data, err) {
-	if ( err) {
-		console.log( err);
-	} else {
-		console.log( "Succesfully created associated shield and user: " + data.username + " - " + data.shieldid);
-	}
+if( process.argv[3] == undefined || isNaN( process.argv[3])) {
+	console.log( "Shield UUID missing or not a number. Syntax: node createUserShieldAssocation <user> <shieldUUID>");
+} else {
+	var userName = process.argv[2];
+	var shieldUUID = parseInt( process.argv[3], 10 );
 	
-})
+	shieldAssociation.createUserShieldAssociation(  config, userName, shieldUUID, function( data, err) {
+		if ( err) {
+			console.log( err);
+		} else {
+			console.log( "Succesfully created associated shield and user: " + data.username + " - " + data.shieldid);
+		}
+	});
+}

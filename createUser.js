@@ -1,5 +1,5 @@
 /**
- * Copyright 2016 IBM Corp. All Rights Reserved.
+ * Copyright 2016, 2017 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,16 @@
 var user = require( './bl/user.js');
 var config = require( './config.js');
 
-user.createUser(  config, 1, function( data, err) {
-	if ( err) {
-		console.log( err);
-	} else {
-		console.log( "Succesfully created user: " + data);
-	}
-	
-})
+if( process.argv[2] == undefined) {
+	console.log( "Username missing. Syntax: node createUser <username>");
+} else {
+	var userName = process.argv[2]; 
+	user.createUser(  config, userName, function( data, err) {
+		if ( err) {
+			console.log( err);
+		} else {
+			console.log( "Succesfully created user: " + data);
+		}
+		
+	})
+}

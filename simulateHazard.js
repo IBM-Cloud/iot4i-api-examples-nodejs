@@ -1,5 +1,5 @@
 /**
- * Copyright 2016 IBM Corp. All Rights Reserved.
+ * Copyright 2016,2017 IBM Corp. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,16 @@
 var hazard = require( './bl/hazard.js');
 var config = require( './config.js');
 
-// 1: id of the user from createUser.js
-hazard.simulateHazard(  config, "user1", function( data, err) {
-	if ( err) {
-		console.log( err);
-	} else {
-		console.log( "Succesfully simulated a water leak hazard for user " + data);
-	}
-	
-})
+if( process.argv[2] == undefined) {
+	console.log( "Username missing. Syntax: node simulateHazard <username>");
+} else {
+	var userName = process.argv[2]; 
+	hazard.simulateHazard(  config, userName, function( data, err) {
+		if ( err) {
+			console.log( err);
+		} else {
+			console.log( "Succesfully simulated a water leak hazard for user " + data);
+		}
+		
+	});
+}
