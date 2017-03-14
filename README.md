@@ -80,38 +80,38 @@ To better understand this example and the IoT for Insurance API this section con
 
 By following the steps below you can exercise all the critical paths in the system, from creating a user to generating hazards for that user. The flow can be repeated as many times as needed, skipping or repeating steps as needed. 
 
-1. Create a user `node createUser.js <username>`. If successfull the application will print the details of the newly created record:
+1. Create a user. If successfull the application will print the details of the newly created record:
 
   ```
-  node createUser.js <username>
+  Syntax: node createUser.js <username>
   Example: node createUser.js user1
   ```
   
 2. Create a shield.If succesfull the application will print the details of the newly created record.
 
   ```
-  node createShield.js <shieldUUID>
+  Syntax: node createShield.js <shieldUUID>
   Example: node createShield.js 10
   ```
 
 3. Attach the shield code to your newly created shield. The command will use the source code from the `resources/shieldCode.js` file. **Important** If you modify the shield code you must also modify `bl/hazard.js` such that the simulated sensor event will have the payload expected by your shield.
 
   ```
-  node createShieldCode.js <shieldUUID>
+  Syntax: node createShieldCode.js <shieldUUID>
   Example: node createShieldCode.js 10
   ```
 
 4. Associate the newly created shield with the user. 
 
   ```
-  node createUserShieldAssociation.js <username> <shieldUUID>
+  Syntax: node createUserShieldAssociation.js <username> <shieldUUID>
   Example: node createUserShieldAssociation.js user1 10
   ```
 
 5. Generate a hazard event for your user. This simulates a message sent by  the sensors installed in the user's home. The message is routed through the IoT Platform service and is processed by the Shield created and registered for the user.
 
   ```
-  node simulateHazard.js <username>
+  Syntax: node simulateHazard.js <username>
   Example: node simulateHazard.js user1
   ```
 
