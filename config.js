@@ -15,15 +15,15 @@
  */
 
 /**
- * The configuration for the API Example. 
+ * The configuration for the API Example.
  * <instanceid> -  replace in the API and Aggregator URLs with the value from the IoT4I service URL
  * <password> - read from the IoT4I Service Credentials page
  */
-var config = module.exports = {
-	api: "https://iot4insurance-api-<instanceid>.mybluemix.net",
-	aggregator: "https://iot4i-aggregator-<instanceid>.mybluemix.net",
-	credentials : {
-		user: "Admin",
-		pass: "<password from IoT4I Service Credentials>"
-	}
-};
+ var config = module.exports = {
+ 	api: "https://iot4insurance-api-e302e1ff-1823-4e7d-8eaa-f556c89bbf22.mybluemix.net",
+ 	aggregator: "https://iot4i-aggregator-<instanceid>.mybluemix.net",
+ 	credentials : {
+ 		user: "Admin",
+ 		pass: "d64e4a12-a706-46ef-942e-f35dc15a67f6"
+ 	}
+ };
