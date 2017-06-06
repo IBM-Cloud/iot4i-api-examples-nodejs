@@ -34,7 +34,8 @@ if( process.argv[3] == undefined) {
 		if ( err) {
 			console.log( err);
 		} else {
-			console.log( "Succesfully created user: " + data);
+			console.log( "Succesfully created device. Response: ");
+			console.dir( data);
 		}
 	});
 }
