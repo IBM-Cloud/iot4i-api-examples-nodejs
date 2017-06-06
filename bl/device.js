@@ -44,11 +44,7 @@ var requestCreateDevice = function( config, device, cb) {
       cb( null, "Create device failed. Reason is: " + response.statusCode);
     }
     else {
-      cb( device, null);
-    }
-
-    if (body) {
-      console.dir(body);
+      cb( body, null);
     }
   });
 };
