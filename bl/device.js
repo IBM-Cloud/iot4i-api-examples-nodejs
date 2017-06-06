@@ -22,7 +22,7 @@ var csrfRequests = require("../csrfRequests.js");
  * Creates a device in the IoT4I system.
  * The connection information is taken from config.js
  */
-var createDevice = function(device) {
+var requestCreateDevice = function( config, device, cb) {
   console.info("Using the /device REST endpoint to create a new device...");
 
   request({
@@ -38,13 +38,13 @@ var createDevice = function(device) {
   },
   function (error, response, body) {
     if (error) {
-      console.error("\tCreate device failed. Reason is: " + error);
+      cb( null, "Create device failed. Reason is: " + error);
     }
     else if (response.statusCode != 200) {
-      console.warn("\tCreate device failed. Reason is: " + response.statusCode);
+      cb( null, "Create device failed. Reason is: " + response.statusCode);
     }
     else {
-      console.info("Successfully created device " + device.username);
+      cb( device, null);
     }
 
     if (body) {
@@ -53,17 +53,8 @@ var createDevice = function(device) {
   });
 };
 
-// Create a sample device.
-var device = { "device_manufacturer": "leaksmart",
-  "sensor_pod_id": "183050",
-  "name": "Sensor",
-  "hub_id": "393773",
-  "upc_code": "waxman_sensor",
-  "model_name": "leakSMART Sensor",
-  "manufacturer_device_model": "leaksmart_sensor",
-  "username": "user1",	// user id must exist ( see createUser.js)
-  "location": "kitchen",
-  "status": "online"
-};
+var createDevice = function(config, device, cb) {
+  csrfRequests.requestAPIWithCSRF( requestCreateDevice, config, device, cb);
+}
 
-csrfRequests.requestAPIWithCSRF(createDevice, device);
+module.exports = {createDevice};
