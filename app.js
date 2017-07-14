@@ -16,6 +16,11 @@ const AppConfig = require('./src/utils/AppConfig');
 
 const IoTIClient = require('./src/IoTIClient');
 
+const devices = require('./src/bl/Devices');
+const shields = require('./src/bl/Shields');
+const shieldActivations = require('./src/bl/ShieldActivations');
+const users = require('./src/bl/Users');
+
 const requiredProperties = {
   iotiAPI: undefined
 };
@@ -33,17 +38,35 @@ process.on('uncaughtException', (err) => {
 
 IoTIClient.init( appConfig);
 
-IoTIClient
-  .get( 'shields')
-  .then(function(response) {
-    console.log('Response %d', response.statusCode);
+// create a user
+const user = {
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "phone": "+1-123456789",
+  "description": "Employee at X"
+}
+//users.createUser( user);
 
-    const content = JSON.parse(response.body);
-    console.log('Shield count: %d', content.totalItems);
+// get all shields
+shields.listShields();
 
-    // uncomment to see full content
-    //console.log('BODY: ' + JSON.stringify( content, null, 2));
-  })
-  .catch((err) => {
-    console.log( 'Error %s', err.message);
-  });
+
+// create a shield activation
+const shieldActivation = {
+  "userId": "6fd4b9693c25b300efdc0dd5a80e6aa9",
+  "shieldId": "8a2cf0a1633dc9d926b0f59bb463467d",
+  "actionIds": [
+    "email"
+  ]
+}
+//shieldActivations.createShieldActivation(shieldActivation);
+
+// register a device for a user
+const device = {
+  "userId": "6fd4b9693c25b300efdc0dd5a80e6aa9",
+  "type": "gateway",
+  "vendor": "wally",
+  "vendorId": "ff-99-98",
+  "location": { 'description' : 'kitchen'}
+}
+//devices.createDevice();

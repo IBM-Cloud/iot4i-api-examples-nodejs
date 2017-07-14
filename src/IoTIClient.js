@@ -25,7 +25,7 @@ class IoTIClient {
 
   get(endpoint) {
 
-    const requestURL = this.buildEndpointURL(this.config.iotiAPI.url, this.config.iotiAPI.tenant, 'shields');
+    const requestURL = this.buildEndpointURL(this.config.iotiAPI.url, this.config.iotiAPI.tenant, endpoint);
     logger.info( noTid, this.config.iotiAPI.tenant, 'Request URL: ', requestURL);
 
     return request
@@ -37,25 +37,24 @@ class IoTIClient {
         },
         resolveWithFullResponse: true
       });
+  }
 
-      /*
-      .on('response', function(response) {
-        console.log(response.statusCode) // 200
-        console.log(response.headers['content-type']) // 'image/png'
+  post(endpoint, data) {
 
-        let buffer = '';
-        response.on('data', function (chunk) {
-          buffer += chunk;
-        });
-        response.on('end', function () {
-          console.log('BODY: ' + JSON.stringify( JSON.parse(buffer), null, 2));
-        });
-      })
-      .on('error', function(err) {
-        res.status(400).send(err);
+    const requestURL = this.buildEndpointURL(this.config.iotiAPI.url, this.config.iotiAPI.tenant, endpoint);
+    logger.info( noTid, this.config.iotiAPI.tenant, 'Request URL: ', requestURL);
+
+    return request
+      .post({
+        uri: requestURL,
+        body: JSON.stringify(data),
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          authorization: 'Bearer ' + this.config.iotiAPI.token
+        },
+        resolveWithFullResponse: true
       });
-      */
-      //.pipe( process.stdout);
   }
 }
 
@@ -68,6 +67,6 @@ module.exports = {
     return instance;
   },
 
-  get: ( endpoint) => instance.get(endpoint),
-
+  get: (endpoint) => instance.get(endpoint),
+  create: (endpoint, data) => instance.post(endpoint, data)
 }
