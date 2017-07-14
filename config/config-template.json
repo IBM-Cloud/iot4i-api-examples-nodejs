@@ -1,0 +1,7 @@
+{
+  "iotiAPI": {
+      "url" : "",
+      "tenant": "",
+      "token" :""
+  }
+}
