@@ -19,6 +19,7 @@ const IoTIClient = require('./src/IoTIClient');
 const devices = require('./src/bl/Devices');
 const shields = require('./src/bl/Shields');
 const shieldActivations = require('./src/bl/ShieldActivations');
+const shieldCodes = require('./src/bl/ShieldCodes');
 const users = require('./src/bl/Users');
 
 const requiredProperties = {
@@ -50,7 +51,6 @@ const user = {
 // get all shields
 shields.listShields();
 
-
 // create a shield activation
 const shieldActivation = {
   "userId": "6fd4b9693c25b300efdc0dd5a80e6aa9",
@@ -66,7 +66,10 @@ const device = {
   "userId": "6fd4b9693c25b300efdc0dd5a80e6aa9",
   "type": "gateway",
   "vendor": "wally",
-  "vendorId": "ff-99-98",
+  "vendor_id": "ff-99-98",
   "location": { 'description' : 'kitchen'}
 }
 //devices.createDevice();
+devices.listDevices();
+
+shieldCodes.listShieldCodes();
