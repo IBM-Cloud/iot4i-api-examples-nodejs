@@ -18,7 +18,7 @@ const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 const API = "shields";
 
 function createShield(user) {
-  IoTIClient
+  return IoTIClient
     .create( API, user)
     .then(function(response) {
       console.log('Response %d', response.statusCode);
@@ -32,7 +32,7 @@ function createShield(user) {
 }
 
 function listShields() {
-  IoTIClient
+  return IoTIClient
     .get( API)
     .then(function(response) {
       console.log('Response %d', response.statusCode);

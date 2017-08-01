@@ -56,6 +56,22 @@ class IoTIClient {
         resolveWithFullResponse: true
       });
   }
+
+  postForm(endpoint, data) {
+
+    const requestURL = this.buildEndpointURL(this.config.iotiAPI.url, this.config.iotiAPI.tenant, endpoint);
+    logger.info( noTid, this.config.iotiAPI.tenant, 'Request URL: ', requestURL);
+
+    return request
+      .post({
+        url: requestURL,
+        formData: data,
+        auth: {
+          bearer: this.config.iotiAPI.token
+        },
+        resolveWithFullResponse: true
+      });
+  }
 }
 
 let instance;
@@ -68,5 +84,6 @@ module.exports = {
   },
 
   get: (endpoint) => instance.get(endpoint),
-  create: (endpoint, data) => instance.post(endpoint, data)
+  create: (endpoint, data) => instance.post(endpoint, data),
+  createForm: (endpoint, data) => instance.postForm(endpoint, data)
 }

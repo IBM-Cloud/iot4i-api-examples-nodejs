@@ -18,7 +18,7 @@ const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 const API = "devices";
 
 function createDevice(device) {
-  IoTIClient
+  return IoTIClient
   .create( API, device)
   .then(function(response) {
     console.log('Response %d', response.statusCode);
@@ -32,7 +32,7 @@ function createDevice(device) {
 }
 
 function listDevices() {
-  IoTIClient
+  return IoTIClient
   .get( API)
   .then(function(response) {
     console.log('Response %d', response.statusCode);

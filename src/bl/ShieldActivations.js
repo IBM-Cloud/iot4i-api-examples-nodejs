@@ -17,7 +17,7 @@ const IoTIClient = require('../IoTIClient');
 const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 
 function createShieldActivation(user) {
-  IoTIClient
+  return IoTIClient
     .create( 'shield-activations', user)
     .then(function(response) {
       console.log('Response %d', response.statusCode);

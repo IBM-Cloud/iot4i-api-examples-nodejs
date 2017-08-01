@@ -17,9 +17,9 @@ const IoTIClient = require('../IoTIClient');
 const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 const API = "shield-codes";
 
-function createShieldCodes(code) {
-  IoTIClient
-    .create( API, code)
+function createShieldCode(code) {
+  return IoTIClient
+    .createForm( API, code)
     .then(function(response) {
       console.log('Response %d', response.statusCode);
 
@@ -32,7 +32,7 @@ function createShieldCodes(code) {
 }
 
 function listShieldCodes() {
-  IoTIClient
+  return IoTIClient
     .get( API)
     .then(function(response) {
       console.log('Response %d', response.statusCode);
@@ -50,6 +50,6 @@ function listShieldCodes() {
 }
 
 module.exports = {
-  createShieldCodes,
+  createShieldCode,
   listShieldCodes
 }

@@ -10,6 +10,8 @@
  *******************************************************************************/
 
 const uuidV4 = require('uuid/v4');
+const fs = require('fs');
+const EventEmitter = require('events');
 
 const logger = require('./src/utils/logger');
 const AppConfig = require('./src/utils/AppConfig');
@@ -20,7 +22,6 @@ const devices = require('./src/bl/Devices');
 const shields = require('./src/bl/Shields');
 const shieldActivations = require('./src/bl/ShieldActivations');
 const shieldCodes = require('./src/bl/ShieldCodes');
-const users = require('./src/bl/Users');
 
 const requiredProperties = {
   iotiAPI: undefined
@@ -39,17 +40,6 @@ process.on('uncaughtException', (err) => {
 
 IoTIClient.init( appConfig);
 
-// create a user
-const user = {
-  "name": "John Doe",
-  "email": "john.doe@example.com",
-  "phone": "+1-123456789",
-  "description": "Employee at X"
-}
-//users.createUser( user);
-
-// get all shields
-shields.listShields();
 
 // create a shield activation
 const shieldActivation = {
@@ -58,7 +48,7 @@ const shieldActivation = {
   "actionIds": [
     "email"
   ]
-}
+};
 //shieldActivations.createShieldActivation(shieldActivation);
 
 // register a device for a user
@@ -68,8 +58,28 @@ const device = {
   "vendor": "wally",
   "vendor_id": "ff-99-98",
   "location": { 'description' : 'kitchen'}
-}
-//devices.createDevice();
-devices.listDevices();
+};
 
-shieldCodes.listShieldCodes();
+
+const shieldCode = {
+  'shieldId': '2807ed89cc74f3a436c270e0c7220791',
+  'enabled': 'false',
+  'description': 'Code for the water leak shield',
+  //'jobOptions': '{}',
+  'type': 'edge',
+  'codeFile': fs.createReadStream( 'resources/water-leak-shield.js')
+};
+
+
+shields.listShields()
+.then(devices.listDevices())
+.then(shieldCodes.listShieldCodes())
+.then(shieldCodes.createShieldCode(shieldCode));
+
+/*
+.then(()=>emitter.emit('alldone', {}));
+
+emitter.on('alldone', function(result){
+  console.log( "All done");
+});
+*/
