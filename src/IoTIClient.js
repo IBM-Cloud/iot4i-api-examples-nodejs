@@ -31,9 +31,7 @@ class IoTIClient {
     return request
       .get({
         uri: requestURL,
-        headers: {
-          accept: 'application/json'
-        },
+        json:true,
         auth: {
           bearer: this.config.iotiAPI.token
         },
@@ -67,6 +65,7 @@ class IoTIClient {
       .post({
         url: requestURL,
         formData: data,
+        json:true,
         auth: {
           bearer: this.config.iotiAPI.token
         },

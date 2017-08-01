@@ -37,7 +37,7 @@ function listShields() {
     .then(function(response) {
       console.log('Response %d', response.statusCode);
 
-      const content = JSON.parse(response.body);
+      const content = response.body;
       console.log('Shield count: %d', content.totalItems);
 
       // uncomment to see full content

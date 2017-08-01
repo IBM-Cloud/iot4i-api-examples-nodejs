@@ -23,7 +23,7 @@ function createShieldCode(code) {
     .then(function(response) {
       console.log('Response %d', response.statusCode);
 
-      const content = JSON.parse(response.body);
+      const content = response.body;
       console.log('Shield code created: ', JSON.stringify( content, null, 2));
     })
     .catch((err) => {
@@ -37,7 +37,7 @@ function listShieldCodes() {
     .then(function(response) {
       console.log('Response %d', response.statusCode);
 
-      const content = JSON.parse(response.body);
+      const content = response.body;
       console.log('Shield codes count: %d', content.totalItems);
 
       // uncomment to see full content
