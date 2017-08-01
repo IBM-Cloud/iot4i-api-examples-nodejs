@@ -23,7 +23,7 @@ function createShieldActivation(user) {
       console.log('Response %d', response.statusCode);
 
       const content = JSON.parse(response.body);
-      console.log('User created: ', JSON.stringify( content, null, 2));
+      console.log('Shield Activation created: ', JSON.stringify( content, null, 2));
     })
     .catch((err) => {
       console.log( 'Error', JSON.stringify( err.message, null, 2));

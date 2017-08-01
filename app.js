@@ -40,24 +40,40 @@ process.on('uncaughtException', (err) => {
 
 IoTIClient.init( appConfig);
 
+// shield
+const shield = {
+  'name': 'Water Leak',
+  'type': 'edge',
+  'description': 'Detects water using humidity sensors',
+  'actionIds': [
+    'email'
+  ],
+  'needsActivationCheck': false,
+  'isPublished': true,
+  'isDisabled': true,
+  'isEdgeOnly': true,
+  'requiredSensors': [
+    {}
+  ]
+};
 
 // create a shield activation
 const shieldActivation = {
-  "userId": "6fd4b9693c25b300efdc0dd5a80e6aa9",
-  "shieldId": "8a2cf0a1633dc9d926b0f59bb463467d",
-  "actionIds": [
-    "email"
+  'userId': '6fd4b9693c25b300efdc0dd5a80e6aa9',
+  'shieldId': '8a2cf0a1633dc9d926b0f59bb463467d',
+  'actionIds': [
+    'email'
   ]
 };
 //shieldActivations.createShieldActivation(shieldActivation);
 
 // register a device for a user
 const device = {
-  "userId": "6fd4b9693c25b300efdc0dd5a80e6aa9",
-  "type": "gateway",
-  "vendor": "wally",
-  "vendor_id": "ff-99-98",
-  "location": { 'description' : 'kitchen'}
+  'userId': "6fd4b9693c25b300efdc0dd5a80e6aa9",
+  'type': "gateway",
+  'vendor': "wally",
+  'vendor_id': "ff-99-98",
+  'location': { 'description' : 'kitchen'}
 };
 
 
@@ -71,8 +87,9 @@ const shieldCode = {
 };
 
 
-shields.listShields()
-.then(devices.listDevices())
+devices.listDevices()
+.then(shields.listShields())
+.then(shields.createShield(shield))
 .then(shieldCodes.listShieldCodes())
 .then(shieldCodes.createShieldCode(shieldCode));
 

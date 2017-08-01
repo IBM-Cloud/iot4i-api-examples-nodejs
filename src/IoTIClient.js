@@ -32,8 +32,10 @@ class IoTIClient {
       .get({
         uri: requestURL,
         headers: {
-          accept: 'application/json',
-          authorization: 'Bearer ' + this.config.iotiAPI.token
+          accept: 'application/json'
+        },
+        auth: {
+          bearer: this.config.iotiAPI.token
         },
         resolveWithFullResponse: true
       });
@@ -47,11 +49,10 @@ class IoTIClient {
     return request
       .post({
         uri: requestURL,
-        body: JSON.stringify(data),
-        headers: {
-          accept: 'application/json',
-          'content-type': 'application/json',
-          authorization: 'Bearer ' + this.config.iotiAPI.token
+        body: data,
+        json:true,
+        auth: {
+          bearer: this.config.iotiAPI.token
         },
         resolveWithFullResponse: true
       });
