@@ -23,6 +23,8 @@ const shields = require('./src/bl/Shields');
 const shieldActivations = require('./src/bl/ShieldActivations');
 const shieldCodes = require('./src/bl/ShieldCodes');
 
+const argv = require('minimist')(process.argv.slice(2));
+
 const requiredProperties = {
   iotiAPI: undefined
 };
@@ -31,6 +33,8 @@ const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 const env = process.env.APP_ENV || 'dev';
 const configFilePath = `./config/config-${env}.json`;
 const appConfig = AppConfig.loadConfig(requiredProperties, require(configFilePath));
+
+
 
 process.on('uncaughtException', (err) => {
   const errorId = uuidV4();
@@ -78,7 +82,7 @@ const device = {
 
 
 const shieldCode = {
-  'shieldId': '2807ed89cc74f3a436c270e0c7220791',
+  'shieldId': 'f8397d6e7ff1fdd9e524229f808791dc',
   'enabled': 'false',
   'description': 'Code for the water leak shield',
   //'jobOptions': '{}',
@@ -87,16 +91,13 @@ const shieldCode = {
 };
 
 
-devices.listDevices()
-.then(shields.listShields())
-.then(shields.createShield(shield))
-.then(shieldCodes.listShieldCodes())
-.then(shieldCodes.createShieldCode(shieldCode));
+if(argv.o === 'createshield') {
+  shields.createShield(shield)
+   .then(shieldCodes.createShieldCode(shieldCode));
+}
 
-/*
-.then(()=>emitter.emit('alldone', {}));
-
-emitter.on('alldone', function(result){
-  console.log( "All done");
-});
-*/
+if(argv.o === 'list') {
+  devices.listDevices()
+  .then(shields.listShields())
+  .then(shieldCodes.listShieldCodes());
+}

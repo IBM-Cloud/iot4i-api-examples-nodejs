@@ -39,6 +39,7 @@ function listShieldCodes() {
 
       const content = response.body;
       console.log('Shield codes count: %d', content.totalItems);
+      console.dir( content);
 
       // uncomment to see full content
       //console.log('BODY: ' + JSON.stringify( content, null, 2));
