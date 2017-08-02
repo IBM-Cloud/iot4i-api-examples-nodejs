@@ -1,0 +1,30 @@
+{
+  "services": {
+    "iotf-service": [
+        {
+            "credentials": {
+                "iotCredentialsIdentifier": "xxxxxxxxxxxxxxxxxx",
+                "mqtt_host": "xxxxxxxxxxxxxxxxxx.messaging.internetofthings.ibmcloud.com",
+                "mqtt_u_port": 1883,
+                "mqtt_s_port": 8883,
+                "http_host": "xxxxxxxxxxxxxxxxxx.internetofthings.ibmcloud.com",
+                "org": "xxxxxxxxxxxxxxxxxx",
+                "apiKey": "xxxxxxxxxxxxxxxxxx",
+                "apiToken": "xxxxxxxxxxxxxxxxxx"
+            },
+            "syslog_drain_url": null,
+            "label": "iotf-service",
+            "provider": null,
+            "plan": "iotf-service-standard",
+            "name": "iotf-service-localtest",
+            "tags": [
+                "internet_of_things",
+                "Internet of Things",
+                "ibm_created",
+                "ibm_dedicated_public",
+                "lite"
+            ]
+        }
+    ]
+  }
+}
