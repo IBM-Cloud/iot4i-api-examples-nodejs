@@ -1,7 +1,0 @@
-{
-  "iotiAPI": {
-      "url" : "https://ioti.us-south.containers.mybluemix.net/api/v1",
-      "tenant": "ff12827fc4e309a44da3086cbb39a355",
-      "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcmFnb3MuY29qb2NhcmlAcm8uaWJtLmNvbSIsImF0X2hhc2giOiJid2hKUHVOM1c2R2NHQ2dyMGYtVU1RIiwicmVhbG1OYW1lIjoiY3VzdG9tUmVhbG0iLCJ1bmlxdWVTZWN1cml0eU5hbWUiOiJkcmFnb3MuY29qb2NhcmlAcm8uaWJtLmNvbSIsImdyb3VwSWRzIjpbInVzZXJzIl0sImlzcyI6Imh0dHBzOi8vaW90NGktc2FuZGJveC1hdXRocHJvdmlkZXIubXlibHVlbWl4Lm5ldDo4MDgwL29pZGMvZW5kcG9pbnQvaW90NGkiLCJhdWQiOiJpb3Q0aXNhbmRib3giLCJleHAiOjE1MDE1OTg1MTcsImlhdCI6MTUwMTU5MTMxN30.0Gq6jSb2yzUw1kDC91W2zzVixFHjkDpd5yUX1_NU0Aw"
-  }
-}
