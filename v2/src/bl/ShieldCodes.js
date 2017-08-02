@@ -25,6 +25,8 @@ function createShieldCode(code) {
 
       const content = response.body;
       console.log('Shield code created: ', JSON.stringify( content, null, 2));
+
+      return content;
     })
     .catch((err) => {
       console.log( 'Error', JSON.stringify( err.message, null, 2));
@@ -41,8 +43,7 @@ function listShieldCodes() {
       console.log('Shield codes count: %d', content.totalItems);
       console.dir( content);
 
-      // uncomment to see full content
-      //console.log('BODY: ' + JSON.stringify( content, null, 2));
+      return content;
     })
     .catch((err) => {
       console.log( 'Error %s', err.message);

@@ -25,6 +25,8 @@ function createDevice(device) {
 
     const content = response.body;
     console.log('Device created: ', JSON.stringify( content, null, 2));
+
+    return content;
   })
   .catch((err) => {
     console.log( 'Error', JSON.stringify( err.message, null, 2));
@@ -40,8 +42,7 @@ function listDevices() {
     const content = response.body;
     console.log('Devices count: %d', content.totalItems);
 
-    // uncomment to see full content
-    //console.log('BODY: ' + JSON.stringify( content, null, 2));
+    return content;
   })
   .catch((err) => {
     console.log( 'Error %s', err.message);

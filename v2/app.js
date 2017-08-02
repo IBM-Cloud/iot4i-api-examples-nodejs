@@ -63,8 +63,8 @@ const shield = {
 
 // create a shield activation
 const shieldActivation = {
-  'userId': '6fd4b9693c25b300efdc0dd5a80e6aa9',
-  'shieldId': '8a2cf0a1633dc9d926b0f59bb463467d',
+  'userId': '-',
+  'shieldId': '-',
   'actionIds': [
     'email'
   ]
@@ -73,7 +73,7 @@ const shieldActivation = {
 
 // register a device for a user
 const device = {
-  'userId': "6fd4b9693c25b300efdc0dd5a80e6aa9",
+  'userId': "-",
   'type': "gateway",
   'vendor': "wally",
   'vendor_id': "ff-99-98",
@@ -81,8 +81,8 @@ const device = {
 };
 
 
-const shieldCode = {
-  'shieldId': 'f8397d6e7ff1fdd9e524229f808791dc',
+let shieldCode = {
+  'shieldId': '-',
   'enabled': 'false',
   'description': 'Code for the water leak shield',
   //'jobOptions': '{}',
@@ -93,7 +93,10 @@ const shieldCode = {
 
 if(argv.o === 'createshield') {
   shields.createShield(shield)
-   .then(shieldCodes.createShieldCode(shieldCode));
+   .then( function(result) {
+     shieldCode.shieldId =  result._id;
+     return shieldCodes.createShieldCode(shieldCode)
+   });
 }
 
 if(argv.o === 'list') {

@@ -24,6 +24,8 @@ function createShieldActivation(user) {
 
       const content = response.body;
       console.log('Shield Activation created: ', JSON.stringify( content, null, 2));
+
+      return content;
     })
     .catch((err) => {
       console.log( 'Error', JSON.stringify( err.message, null, 2));
