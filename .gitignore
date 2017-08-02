@@ -1,6 +1,4 @@
 /.project
 /node_modules/
-/iot4i-api-examples.yml
-/push.iot4i-test.bat
 /npm-debug.log
-/config/config-dev.json
+/v2/config/config-dev.json
