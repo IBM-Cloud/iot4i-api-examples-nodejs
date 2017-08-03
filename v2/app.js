@@ -99,9 +99,8 @@ const deviceEvent = {
   'isCrash':true
 };
 
+// publish an event in the IoT Platform to trigger the crash shield
 if(argv.o === 'hazard') {
-  console.log( JSON.stringify(deviceEvent));
-
   iot4iPlatformClient.connect(noTid, null)
   .then(() => {
     return iot4iPlatformClient.publishDeviceEvent('simulated', 'test', 'status', 'json', JSON.stringify(deviceEvent));
@@ -116,6 +115,7 @@ if(argv.o === 'hazard') {
   .finally( ()=>{iot4iPlatformClient.disconnect(noTid, null)});
 }
 
+// create a shield and its shield code
 if(argv.o === 'createshield') {
   shields.createShield(shield)
    .then( function(result) {
@@ -124,8 +124,9 @@ if(argv.o === 'createshield') {
    });
 }
 
+// list existing resoruces
 if(argv.o === 'list') {
   devices.listDevices()
-  .then(shields.listShields())
-  .then(shieldCodes.listShieldCodes());
+  .then(()=>shields.listShields())
+  .then(()=>shieldCodes.listShieldCodes());
 }
