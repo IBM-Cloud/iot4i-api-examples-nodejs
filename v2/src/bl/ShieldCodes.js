@@ -10,7 +10,6 @@
 
  'use strict';
 
-//const request = require('request');
 const ResourceStub = require( './ResourceStub');
 const API = 'shield-codes';
 

@@ -10,12 +10,11 @@
 
  'use strict';
 
-//const request = require('request');
 const ResourceStub = require( './ResourceStub');
 const API = 'shields';
 
 function createShield(tid, iot4iClient, shield) {
-return ResourceStub.create(tid, iot4iClient, API, shield);
+  return ResourceStub.create(tid, iot4iClient, API, shield);
 }
 
 function listShields(tid, iot4iClient) {
