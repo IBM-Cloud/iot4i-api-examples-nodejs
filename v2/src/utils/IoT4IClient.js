@@ -10,7 +10,7 @@
 
 //const request = require('request');
 const request = require('request-promise');
-const logger = require('./utils/logger');
+const logger = require('./logger');
 const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 
 class IoTIClient {

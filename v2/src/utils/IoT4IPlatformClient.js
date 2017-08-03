@@ -12,7 +12,7 @@
 const async = require('async');
 const Promise = require('bluebird');
 const iotClient = require('ibmiotf');
-const logger = require('./utils/logger');
+const logger = require('./logger');
 
 class IoT4IPlatformClient {
 

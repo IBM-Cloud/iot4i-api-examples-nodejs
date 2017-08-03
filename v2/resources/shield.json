@@ -1,0 +1,15 @@
+{
+  "name": "Water Leak",
+  "type": "edge",
+  "description": "Detects water using humidity sensors",
+  "actionIds": [
+    "email"
+  ],
+  "needsActivationCheck": false,
+  "isPublished": true,
+  "isDisabled": true,
+  "isEdgeOnly": true,
+  "requiredSensors": [
+    {}
+  ]
+}

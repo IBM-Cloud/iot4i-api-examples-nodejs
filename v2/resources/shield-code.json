@@ -1,0 +1,7 @@
+{
+  "shieldId": "-",
+  "enabled": "false",
+  "description": "Code for the water leak shield",
+  "type": "edge",
+  "codeFile": ""
+}

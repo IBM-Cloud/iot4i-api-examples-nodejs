@@ -13,16 +13,15 @@ const uuidV4 = require('uuid/v4');
 const fs = require('fs');
 const EventEmitter = require('events');
 
-const logger = require('./src/utils/logger');
-const AppConfig = require('./src/utils/AppConfig');
+const logger = require('./utils/logger');
+const AppConfig = require('./utils/AppConfig');
+const IoTIClient = require('./utils/IoT4IClient');
+const IoT4IPlatformClient = require('./utils/IoT4IPlatformClient');
 
-const IoTIClient = require('./src/IoT4IClient');
-const IoT4IPlatformClient = require('./src/IoT4IPlatformClient');
-
-const devices = require('./src/bl/Devices');
-const shields = require('./src/bl/Shields');
-const shieldActivations = require('./src/bl/ShieldActivations');
-const shieldCodes = require('./src/bl/ShieldCodes');
+const devices = require('./bl/Devices');
+const shields = require('./bl/Shields');
+const shieldActivations = require('./bl/ShieldActivations');
+const shieldCodes = require('./bl/ShieldCodes');
 
 const argv = require('minimist')(process.argv.slice(2));
 
@@ -32,7 +31,7 @@ const requiredProperties = {
 const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 
 const env = process.env.APP_ENV || 'dev';
-const configFilePath = `./config/config-${env}.json`;
+const configFilePath = `../config/config-${env}.json`;
 const appConfig = AppConfig.loadConfig(requiredProperties, require(configFilePath));
 
 process.on('uncaughtException', (err) => {
@@ -45,59 +44,20 @@ IoTIClient.init( appConfig);
 const iot4iPlatformClient = new IoT4IPlatformClient(noTid, appConfig.iotfCredentials);
 
 // shield
-const shield = {
-  'name': 'Water Leak',
-  'type': 'edge',
-  'description': 'Detects water using humidity sensors',
-  'actionIds': [
-    'email'
-  ],
-  'needsActivationCheck': false,
-  'isPublished': true,
-  'isDisabled': true,
-  'isEdgeOnly': true,
-  'requiredSensors': [
-    {}
-  ]
-};
+const shield = JSON.parse(fs.readFileSync('./resources/shield.json', 'utf8'));
 
 // create a shield activation
-const shieldActivation = {
-  'userId': '-',
-  'shieldId': '-',
-  'actionIds': [
-    'email'
-  ]
-};
-//shieldActivations.createShieldActivation(shieldActivation);
+const shieldActivation = JSON.parse(fs.readFileSync('./resources/shield-activation.json', 'utf8'));;
 
-// register a device for a user
-const device = {
-  'userId': "-",
-  'type': "gateway",
-  'vendor': "wally",
-  'vendor_id': "ff-99-98",
-  'location': { 'description' : 'kitchen'}
-};
+// device registration information
+const device = JSON.parse(fs.readFileSync('./resources/device.json', 'utf8'));;
 
 
-let shieldCode = {
-  'shieldId': '-',
-  'enabled': 'false',
-  'description': 'Code for the water leak shield',
-  //'jobOptions': '{}',
-  'type': 'edge',
-  'codeFile': fs.createReadStream( 'resources/water-leak-shield.js')
-};
+let shieldCode = JSON.parse(fs.readFileSync('./resources/shield-code.json', 'utf8'));;
+shieldCode.codeFile = fs.createReadStream( './resources/water-leak-shield.js')
 
-const deviceEvent = {
-  'd' : {
-    'addOns':{
-      'gatewayId':'test12345678'
-    }
-  },
-  'isCrash':true
-};
+// device event data
+const deviceEvent = JSON.parse(fs.readFileSync('./resources/device-event.json', 'utf8'));;
 
 // publish an event in the IoT Platform to trigger the crash shield
 if(argv.o === 'hazard') {
@@ -118,8 +78,8 @@ if(argv.o === 'hazard') {
 // create a shield and its shield code
 if(argv.o === 'createshield') {
   shields.createShield(shield)
-   .then( function(result) {
-     shieldCode.shieldId =  result._id;
+   .then( (result) => {
+     shieldCode.shieldId = result._id;
      return shieldCodes.createShieldCode(shieldCode)
    });
 }
