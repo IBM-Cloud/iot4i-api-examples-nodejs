@@ -1,4 +1,3 @@
-
 /*******************************************************************************
 * Licensed Materials - Property of IBM
 * © Copyright IBM Corporation 2017. All Rights Reserved.
@@ -8,45 +7,17 @@
 * Contract with IBM Corp.
 *******************************************************************************/
 
-//const request = require('request');
-const request = require('request-promise');
+'use strict';
 
-const logger = require('../utils/logger');
-const IoTIClient = require('../utils/IoT4IClient');
-
-const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
+const ResourceStub = require( './ResourceStub');
 const API = "devices";
 
-function createDevice(device) {
-  return IoTIClient
-  .create( API, device)
-  .then(function(response) {
-    console.log('Response %d', response.statusCode);
-
-    const content = response.body;
-    console.log('Device created: ', JSON.stringify( content, null, 2));
-
-    return content;
-  })
-  .catch((err) => {
-    console.log( 'Error', JSON.stringify( err.message, null, 2));
-  });
+function createDevice(tid, iot4iClient, device) {
+  return ResourceStub.create(tid, iot4iClient, API, device);
 }
 
-function listDevices() {
-  return IoTIClient
-  .get( API)
-  .then(function(response) {
-    console.log('Response %d', response.statusCode);
-
-    const content = response.body;
-    console.log('Devices count: %d', content.totalItems);
-
-    return content;
-  })
-  .catch((err) => {
-    console.log( 'Error %s', err.message);
-  });
+function listDevices(tid, iot4iClient, device) {
+  return ResourceStub.list(tid, iot4iClient, API);
 }
 
 module.exports = {

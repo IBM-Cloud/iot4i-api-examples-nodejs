@@ -8,29 +8,16 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 
+ 'use strict';
+
 //const request = require('request');
-const request = require('request-promise');
+const ResourceStub = require( './ResourceStub');
+const API = 'shield-activations';
 
-const logger = require('../utils/logger');
-const IoTIClient = require('../utils/IoT4IClient');
-
-const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
-
-function createShieldActivation(user) {
-  return IoTIClient
-    .create( 'shield-activations', user)
-    .then(function(response) {
-      console.log('Response %d', response.statusCode);
-
-      const content = response.body;
-      console.log('Shield Activation created: ', JSON.stringify( content, null, 2));
-
-      return content;
-    })
-    .catch((err) => {
-      console.log( 'Error', JSON.stringify( err.message, null, 2));
-    });
+function createShieldActivation(tid, iot4iClient, shieldActivation) {
+  return ResourceStub.create(tid, iot4iClient, API, shieldActivation);
 }
+
 module.exports = {
   createShieldActivation
 }

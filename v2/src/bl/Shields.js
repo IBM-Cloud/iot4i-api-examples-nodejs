@@ -8,47 +8,18 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 
+ 'use strict';
+
 //const request = require('request');
-const request = require('request-promise');
+const ResourceStub = require( './ResourceStub');
+const API = 'shields';
 
-const logger = require('../utils/logger');
-const IoTIClient = require('../utils/IoT4IClient');
-
-const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
-const API = "shields";
-
-function createShield(user) {
-  return IoTIClient
-    .create( API, user)
-    .then(function(response) {
-      console.log('Response %d', response.statusCode);
-
-      const content = response.body;
-      console.log('Shield created: ', JSON.stringify( content, null, 2));
-
-      return content;
-    })
-    .catch((err) => {
-      console.log( 'Error', JSON.stringify( err.message, null, 2));
-    });
+function createShield(tid, iot4iClient, shield) {
+return ResourceStub.create(tid, iot4iClient, API, shield);
 }
 
-function listShields() {
-  return IoTIClient
-    .get( API)
-    .then(function(response) {
-      console.log('Response %d', response.statusCode);
-
-      const content = response.body;
-      console.log('Shield count: %d', content.totalItems);
-      console.dir( content);
-
-      return content;
-    })
-    .catch((err) => {
-      console.log( 'Error %s', err.message);
-    });
-
+function listShields(tid, iot4iClient) {
+  return ResourceStub.list(tid, iot4iClient, API);
 }
 
 module.exports = {

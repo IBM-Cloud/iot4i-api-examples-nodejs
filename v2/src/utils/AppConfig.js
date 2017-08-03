@@ -1,5 +1,3 @@
-'use strict';
-
 /*******************************************************************************
  * Licensed Materials - Property of IBM
  * © Copyright IBM Corporation 2017. All Rights Reserved.
@@ -8,6 +6,8 @@
  * Use, duplication or disclosure restricted by GSA ADP Schedule
  * Contract with IBM Corp.
  *******************************************************************************/
+
+ 'use strict';
 
 const cfenv = require('cfenv');
 

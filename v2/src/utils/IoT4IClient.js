@@ -8,12 +8,14 @@
  * Contract with IBM Corp.
  *******************************************************************************/
 
+'use strict';
+
 //const request = require('request');
 const request = require('request-promise');
 const logger = require('./logger');
 const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 
-class IoTIClient {
+class IoT4IClient {
 
   constructor(config) {
     this.config = config;
@@ -39,7 +41,7 @@ class IoTIClient {
       });
   }
 
-  post(endpoint, data) {
+  create(endpoint, data) {
 
     const requestURL = this.buildEndpointURL(this.config.iotiAPI.url, this.config.iotiAPI.tenant, endpoint);
     logger.info( noTid, this.config.iotiAPI.tenant, 'Request URL: ', requestURL);
@@ -56,7 +58,7 @@ class IoTIClient {
       });
   }
 
-  postForm(endpoint, data) {
+  createForm(endpoint, data) {
 
     const requestURL = this.buildEndpointURL(this.config.iotiAPI.url, this.config.iotiAPI.tenant, endpoint);
     logger.info( noTid, this.config.iotiAPI.tenant, 'Request URL: ', requestURL);
@@ -74,16 +76,4 @@ class IoTIClient {
   }
 }
 
-let instance;
-
-module.exports = {
-
-  init: (config) => {
-    instance = new IoTIClient(config);
-    return instance;
-  },
-
-  get: (endpoint) => instance.get(endpoint),
-  create: (endpoint, data) => instance.post(endpoint, data),
-  createForm: (endpoint, data) => instance.postForm(endpoint, data)
-}
+module.exports = IoT4IClient;
