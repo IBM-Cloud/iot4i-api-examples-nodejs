@@ -18,31 +18,35 @@ const IoT4IClient = require('./utils/IoT4IClient');
 const IoT4IPlatformClient = require('./utils/IoT4IPlatformClient');
 const CodeRunner = require('./CodeRunner');
 
+process.on('uncaughtException', (err) => {
+  const errorId = uuidV4();
+  const method = 'uncaughtException';
+  const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
+
+  logger.error(noTid, 'method', 'Uncaught error. Error id', errorId, 'Stack:', err.stack);
+});
+
+// load configuration
 const requiredProperties = {
   iotiAPI: undefined,
   iotfCredentials: undefined
 };
-const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 
 const env = process.env.APP_ENV || 'dev';
 const configFilePath = `../config/config-${env}.json`;
 const appConfig = AppConfig.loadConfig(requiredProperties, require(configFilePath));
 
-process.on('uncaughtException', (err) => {
-  const errorId = uuidV4();
-  const method = 'uncaughtException';
-  logger.error(noTid, 'method', 'Uncaught error. Error id', errorId, 'Stack:', err.stack);
-});
-
-// initializae the clients used
+// initialize the clients
 const ioti4Client = new IoT4IClient(appConfig);
 const iot4iPlatformClient = new IoT4IPlatformClient(noTid, appConfig.iotfCredentials);
 
-const tid = uuidV4();
+// read command line
 const argv = minimist(process.argv.slice(2));
 const operation = argv.o;
 
-// publish an event in the IoT Platform to trigger the crash shield
+// run the operation
+const tid = uuidV4();
+
 if(operation === 'hazard') {
   CodeRunner.simulateHazard(tid,  ioti4Client, iot4iPlatformClient);
 } else if (operation === 'createdevice') {
