@@ -10,15 +10,13 @@
 
 const uuidV4 = require('uuid/v4');
 const fs = require('fs');
-const EventEmitter = require('events');
+const minimist = require('minimist');
 
 const logger = require('./utils/logger');
 const AppConfig = require('./utils/AppConfig');
 const IoT4IClient = require('./utils/IoT4IClient');
 const IoT4IPlatformClient = require('./utils/IoT4IPlatformClient');
 const CodeRunner = require('./CodeRunner');
-
-const argv = require('minimist')(process.argv.slice(2));
 
 const requiredProperties = {
   iotiAPI: undefined,
@@ -33,10 +31,24 @@ const appConfig = AppConfig.loadConfig(requiredProperties, require(configFilePat
 process.on('uncaughtException', (err) => {
   const errorId = uuidV4();
   const method = 'uncaughtException';
-  logger.error(noTid, method, 'Uncaught error. Error id', errorId, 'Stack:', err.stack);
+  logger.error(noTid, 'method', 'Uncaught error. Error id', errorId, 'Stack:', err.stack);
 });
 
+// initializae the clients used
 const ioti4Client = new IoT4IClient(appConfig);
 const iot4iPlatformClient = new IoT4IPlatformClient(noTid, appConfig.iotfCredentials);
 
-CodeRunner.runExample( argv.o,  ioti4Client, iot4iPlatformClient);
+const tid = uuidV4();
+const argv = minimist(process.argv.slice(2));
+const operation = argv.o;
+
+// publish an event in the IoT Platform to trigger the crash shield
+if(operation === 'hazard') {
+  CodeRunner.simulateHazard(tid,  ioti4Client, iot4iPlatformClient);
+} else if (operation === 'createdevice') {
+  CodeRunner.createdevice(tid,  ioti4Client, iot4iPlatformClient);
+} else if (operation === 'list') {
+  CodeRunner.listAssets(tid,  ioti4Client, iot4iPlatformClient);
+} else {
+  logger.error(noTid, method, 'Uncaught error. Error id', errorId, 'Stack:', err.stack);
+}

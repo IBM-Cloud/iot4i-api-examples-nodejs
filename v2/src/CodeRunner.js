@@ -10,34 +10,33 @@
 
  'use strict';
 
-const fs = require('fs');
+ const fs = require('fs');
 
  const devices = require('./bl/Devices');
  const shields = require('./bl/Shields');
  const shieldActivations = require('./bl/ShieldActivations');
  const shieldCodes = require('./bl/ShieldCodes');
 
- function runExample( operation, iot4iClient, iot4iPlatformClient) {
-   const tid = require('uuid/v4')();
+const logger = require('./utils/logger');
 
-   // publish an event in the IoT Platform to trigger the crash shield
-   if(operation === 'hazard') {
-     const deviceEvent = JSON.parse(fs.readFileSync('./resources/device-event.json', 'utf8'));
+ function simulateHazard(tid, iot4iClient, iot4iPlatformClient) {
+   const method = 'simulateHazard';
+   const deviceEvent = JSON.parse(fs.readFileSync('./resources/device-event.json', 'utf8'));
 
-     iot4iPlatformClient.connect(tid, null)
-     .then(() => {
-       return iot4iPlatformClient.publishDeviceEvent('simulated', 'test', 'status', 'json', JSON.stringify(deviceEvent));
-     })
-     .then(() => {
-       console.log( 'Event published in IoT Platform');
-     }
-   )
+   iot4iPlatformClient.connect(tid, null)
+   .then(() => {
+     return iot4iPlatformClient.publishDeviceEvent('simulated', 'test', 'status', 'json', JSON.stringify(deviceEvent));
+   })
+   .then(() => {
+     logger.error(tid, method, 'Event published in IoT Platform');
+   })
    .catch((err) => {
-     console.log('Failed sending data iotp', err);
+     logger.error(tid, method, 'Failed sending data iotp', err);
    })
    .finally( ()=>{iot4iPlatformClient.disconnect(tid, null)});
  }
- else if(operation === 'createshield') {
+
+ function createShield(tid, iot4iClient, iot4iPlatformClient) {
    const shield = JSON.parse(fs.readFileSync('./resources/shield.json', 'utf8'));
 
    const device = JSON.parse(fs.readFileSync('./resources/device.json', 'utf8'));;
@@ -52,18 +51,22 @@ const fs = require('fs');
      return shieldCodes.createShieldCode(tid, iot4iClient, shieldCode)
    });
  }
- else if(operation === 'createdevice') {
+
+ function createDevice(tid, iot4iClient, iot4iPlatformClient) {
    const device = JSON.parse(fs.readFileSync('./resources/device.json', 'utf8'));;
    devices.createDevice(tid, iot4iClient, device);
  }
- else if(operation === 'list') {
+
+
+ function listAssets(tid, iot4iClient, iot4iPlatformClient) {
    devices.listDevices(tid, iot4iClient)
    .then(()=>shields.listShields(tid, iot4iClient))
    .then(()=>shieldCodes.listShieldCodes(tid, iot4iClient));
  }
- else {
-   console.log( 'Unrecognized operation. Syntax is: node ./src/app.js -o "createdevice|createshield|hazard|list"');
- }
-}
 
-module.exports = { runExample};
+ module.exports = {
+   createDevice,
+   createShield,
+   listAssets,
+   simulateHazard
+ };
