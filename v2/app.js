@@ -94,18 +94,20 @@ const deviceEvent = {
   'd' : {
     'addOns':{
       'gatewayId':'test12345678'
-    },
-    'isCrash':true
-  }
+    }
+  },
+  'isCrash':true
 };
 
 if(argv.o === 'hazard') {
+  console.log( JSON.stringify(deviceEvent));
+
   iot4iPlatformClient.connect(noTid, null)
   .then(() => {
     return iot4iPlatformClient.publishDeviceEvent('simulated', 'test', 'status', 'json', JSON.stringify(deviceEvent));
   })
   .then(() => {
-      console.log( 'Event sent');
+      console.log( 'Event published in IoT Platform');
     }
   )
   .catch((err) => {
