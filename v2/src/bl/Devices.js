@@ -12,7 +12,7 @@
 const request = require('request-promise');
 
 const logger = require('../utils/logger');
-const IoTIClient = require('../IoTIClient');
+const IoTIClient = require('../IoT4IClient');
 
 const noTid = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 const API = "devices";

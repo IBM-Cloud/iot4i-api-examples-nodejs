@@ -16,7 +16,8 @@ const EventEmitter = require('events');
 const logger = require('./src/utils/logger');
 const AppConfig = require('./src/utils/AppConfig');
 
-const IoTIClient = require('./src/IoTIClient');
+const IoTIClient = require('./src/IoT4IClient');
+const IoT4IPlatformClient = require('./src/IoT4IPlatformClient');
 
 const devices = require('./src/bl/Devices');
 const shields = require('./src/bl/Shields');
@@ -34,8 +35,6 @@ const env = process.env.APP_ENV || 'dev';
 const configFilePath = `./config/config-${env}.json`;
 const appConfig = AppConfig.loadConfig(requiredProperties, require(configFilePath));
 
-
-
 process.on('uncaughtException', (err) => {
   const errorId = uuidV4();
   const method = 'uncaughtException';
@@ -43,6 +42,7 @@ process.on('uncaughtException', (err) => {
 });
 
 IoTIClient.init( appConfig);
+const iot4iPlatformClient = new IoT4IPlatformClient(noTid, appConfig.iotfCredentials);
 
 // shield
 const shield = {
@@ -90,6 +90,29 @@ let shieldCode = {
   'codeFile': fs.createReadStream( 'resources/water-leak-shield.js')
 };
 
+const deviceEvent = {
+  'd' : {
+    'addOns':{
+      'gatewayId':'test12345678'
+    },
+    'isCrash':true
+  }
+};
+
+if(argv.o === 'hazard') {
+  iot4iPlatformClient.connect(noTid, null)
+  .then(() => {
+    return iot4iPlatformClient.publishDeviceEvent('simulated', 'test', 'status', 'json', JSON.stringify(deviceEvent));
+  })
+  .then(() => {
+      console.log( 'Event sent');
+    }
+  )
+  .catch((err) => {
+    console.log('Failed sending data iotp', err);
+  })
+  .finally( ()=>{iot4iPlatformClient.disconnect(noTid, null)});
+}
 
 if(argv.o === 'createshield') {
   shields.createShield(shield)

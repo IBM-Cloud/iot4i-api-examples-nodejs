@@ -15,7 +15,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "~2.1.2",
+    "bluebird": "^3.4.1",
     "cfenv": "^1.0.4",
+    "ibmiotf": "~0.2.25",
     "jsonschema": "^1.1.1",
     "lodash": "^4.17.2",
     "minimist": "^1.2.0",
