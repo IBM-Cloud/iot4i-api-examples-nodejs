@@ -37,16 +37,15 @@ const configFilePath = `../config/config-${env}.json`;
 const appConfig = AppConfig.loadConfig(requiredProperties, require(configFilePath));
 
 // initialize the clients
+const tid = uuidV4();
 const ioti4Client = new IoT4IClient(appConfig);
-const iot4iPlatformClient = new IoT4IPlatformClient(noTid, appConfig.iotfCredentials);
+const iot4iPlatformClient = new IoT4IPlatformClient(tid, appConfig.iotfCredentials);
 
 // read command line
 const argv = minimist(process.argv.slice(2));
 const operation = argv.o;
 
 // run the operation
-const tid = uuidV4();
-
 if(operation === 'hazard') {
   CodeRunner.simulateHazard(tid,  ioti4Client, iot4iPlatformClient);
 } else if (operation === 'createdevice') {

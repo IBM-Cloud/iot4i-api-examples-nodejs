@@ -28,7 +28,7 @@ const logger = require('./utils/logger');
      return iot4iPlatformClient.publishDeviceEvent('simulated', 'test', 'status', 'json', JSON.stringify(deviceEvent));
    })
    .then(() => {
-     logger.error(tid, method, 'Event published in IoT Platform');
+     logger.info(tid, method, 'Event published in IoT Platform');
    })
    .catch((err) => {
      logger.error(tid, method, 'Failed sending data iotp', err);
