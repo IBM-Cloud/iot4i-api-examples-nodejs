@@ -1,7 +1,0 @@
-{
-  "userId": "-",
-  "type": "gateway",
-  "vendor": "wally",
-  "vendor_id": "test12345678",
-  "location": { "description" : "Water sensor in the kitchen."}
-}
