@@ -1,8 +1,9 @@
-# IoT for Insurance API Examples#
+# IoT for Insurance API Examples
 
 The IoT4I API Examples provides examples of using the API of the IBM Bluemix [IoT for Insurance service](https://new-console.ng.bluemix.net/catalog/services/iot-for-insurance/). The examples show how to register users, create devices, create shields and generate events using the [REST API](https://iot4i-docs-api.mybluemix.net/dist) from a Node.JS environment.
 
 ## Notice
+
 These examples are applicable to the [IoT4I Bluemix Service](https://console.ng.bluemix.net/catalog/services/iot-for-insurance/). For the IoT4I On Cloud offering the API Examples are available at https://github.com/ibm-watson-iot/ioti-api-examples
 
 ## Overview
